@@ -3,13 +3,15 @@ from django import forms
 from . models import User
 from django.core.exceptions import ValidationError
 
+
 class UserRegistrationForm(forms.ModelForm):
     password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
-    password2 = forms.CharField(label='Password confirmation', 
-                                    widget=forms.PasswordInput)
+    password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput)
+
     class Meta:
         model = User
         fields = ('first_name','last_name','phone_number','email','date_of_birth','nationality')
+        # widgets = {'date_of_birth': DatePickerInput(),}
 
     def clean_password2(self):
         # Check that the two password entries match

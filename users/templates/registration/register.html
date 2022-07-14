@@ -1,39 +1,44 @@
 {% extends './base.html' %}
 {% load bootstrap4 %}
+{% load static %}
 
 {% block page_header %}
-<h2>Register Here.</h2>
+<h2>Get a Clever account in minutes.</h2>
 
 {% endblock page_header %}
 
 {% block content %}
-<script>
-    $("#date_of_birth").datepicker({
-    format: "dd/mm/yyyy"
-});
-</script>
 
 <form method="post" action="{% url 'users:register' %}" class="form">
     {% csrf_token %}
     <!-- {% bootstrap_form form %} -->
-    <div class="row">
-        <div class="col-sm-12">
+    <div class="form-row">
             <div class="col-sm-4 form-group">
                 {% bootstrap_field form.first_name placeholder=False %}
             </div>
             <div class="col-sm-4 form-group">
                 {% bootstrap_field form.last_name placeholder=False%}
             </div>
-            <div class="col-sm-4 form-group">
-                {% bootstrap_field form.email placeholder=False%}
-            </div>
-            <div class="col-sm-4 form-group">
-                {% bootstrap_field form.date_of_birth placeholder=False%}
-            </div>
+    </div>
+    <div class="form-row">
+        <div class="col-sm-4 form-group">
+            {% bootstrap_field form.email placeholder=False %}
+        </div>
+        <div class="col-sm-4 form-group">
+            {% bootstrap_field form.phone_number placeholder=False%}
         </div>
     </div>
+    <div class="form-row">
+        <div class="col-sm-4 form-group">
+            {% bootstrap_field form.date_of_birth placeholder=False %}
+        </div>
+        <div class="col-sm-4 form-group">
+            {% bootstrap_field form.nationality placeholder=False%}
+        </div>
+    </div>
+   
     {% buttons %}
-    <button name="submit" class="btn btn-primary">Register</button>
+    <button name="submit" class="btn btn-primary">Sign up</button>
     {% endbuttons %}
     <input type="hidden" name="next" value="{% url 'users:login'
     %}" />
