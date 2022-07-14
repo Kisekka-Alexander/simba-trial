@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.utils.translation import gettext_lazy as _
 from django.utils import timezone
+from django_countries.fields import CountryField
 
 class User(AbstractUser):
     first_name = models.CharField(max_length=50)
@@ -10,7 +11,7 @@ class User(AbstractUser):
         'unique': _("A user with that email already exist.")})
     phone_number = models.CharField(max_length=20)
     date_of_birth = models.DateField()
-    nationality = models.CharField(max_length=50)
+    nationality = CountryField(blank_label='select country')
     is_active = models.BooleanField(_('Active'), default=True)
     date_joined = models.DateTimeField(_('date joined'), default=timezone.now)
 
